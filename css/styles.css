@@ -1,0 +1,41 @@
+body {
+  display: grid;
+  /*justify-content: center;*/
+}
+
+h1, h3, h4, label {
+  text-align: center;
+}
+
+canvas {
+  width: 90%;
+  height: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  image-rendering: pixelated;
+  border: 2px solid black;
+}
+
+.box_container {
+  width: 80%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.sprite_box {
+  aspect-ratio: 1 / 1;
+  background-color: magenta;
+  display: grid;
+  place-items: center;
+}
+
+.preview_box {
+  background-color: blue;
+}
+
+.input_box {
+  display: block;
+  text-align: center;
+}
