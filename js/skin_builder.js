@@ -44,14 +44,14 @@ function drawGonerSprite(intHead, intBody, boolHair, boolBlush) {
   // Load and draw hair texture if option selected
   if (boolHair) {
     const imgHair = new Image()
-    imgHair.src = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + intHead + "png";
+    imgHair.src = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + (intHead - 1) + ".png";
     imgHair.onload = function() { ctxLive.drawImage(imgHair, 0, 0, 64, 64); }
   };
 
   // Load and draw blush texture if option selected
   if (boolBlush) {
     const imgBlush = new Image()
-    imgBlush.src = "../images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
+    imgBlush.src = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
     imgBlush.onload = function() {ctxLive.drawImage(imgBlush, 0, 0, 64, 64); }
   };
 
@@ -74,9 +74,18 @@ document.getElementById("body").addEventListener("change", function(event) {
 
 document.getElementById("blush").addEventListener("change", function(event) {
   if (this.checked) {
-    blushToggle = true
+    toggleBlush = true
   } else {
-    blushToggle = false
+    toggleBlush = false
+  };
+  drawGonerSprite(currentHead, currentBody, toggleHair, toggleBlush); 
+});
+
+document.getElementById("hair").addEventListener("change", function(event) {
+  if (this.checked) {
+    toggleHair = true
+  } else {
+    toggleHair = false
   };
   drawGonerSprite(currentHead, currentBody, toggleHair, toggleBlush); 
 });
