@@ -51,11 +51,11 @@ let toggleHair = false;
 
 async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
   console.log("drawGonerSprite(): Function initialised")
-  console.log("drawGonerSprite(): varModel = " + varModel)
-  console.log("drawGonerSprite(): intHead = " + intHead)
-  console.log("drawGonerSprite(): intBody = " + intBody)
-  console.log("drawGonerSprite(): boolHair = " + boolHair)
-  console.log("drawGonerSprite(): boolBlush = " + boolBlush)
+  // console.log("drawGonerSprite(): varModel = " + varModel)
+  // console.log("drawGonerSprite(): intHead = " + intHead)
+  // console.log("drawGonerSprite(): intBody = " + intBody)
+  // console.log("drawGonerSprite(): boolHair = " + boolHair)
+  // console.log("drawGonerSprite(): boolBlush = " + boolBlush)
   ctxLive.clearRect(0, 0, canvas.width, canvas.height);
   await ctxLive.beginPath();
   console.log("drawGonerSprite(): Canvas cleared") 
@@ -96,7 +96,7 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
   
   // Send canvasUpdate to let 3d preview know canvas has been updated
   await canvas.dispatchEvent(new Event("canvasUpdate")) 
-  
+  console.log("canvasUpdate dispatched"); 
 };
 
 drawGonerSprite(currentModel, currentHead, currentBody, toggleHair, toggleBlush);
