@@ -7,20 +7,38 @@ const viewer = new Render({
   canvas: document.getElementById('canvas-container'),
   width: container.clientWidth,
   height: container.clientHeight,
-  skin: "https://mc-heads.net/skin/Steve",
-  model: 'default', // 'default' or 'slim'
+  model: 'default', 
 });
 
-
+// First load of skinCanvas
 const skinCanvas = document.getElementById('live_skin_canvas');
 
-function refreshSkin() {
-  // const skinCanvas = document.getElementById('live_skin_canvas');
-  const skinDataUrl = skinCanvas.toDataURL('image/png');
-  viewer.loadSkin(skinDataUrl);
+
+// debounce function for refreshSkin
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
 };
 
-refreshSkin();
+
+function refreshSkin() {
+  const skinCanvas = document.getElementById('live_skin_canvas');
+  skinCanvas.toBlob((blob) => {
+    if (!blob) return;
+
+    const skinObjectURL = URL.createObjectURL(blob);
+    viewer.loadSkin(skinObjectURL);
+  }, "image/png");
+  console.log("refreshSkin() finished");
+};
+
+const debouncedRefresh = debounce(refreshSkin, 50);
+debouncedRefresh();
 
 // Load a cape
 // await viewer.loadCape('https://mc-heads.net/cape/Notch');
@@ -46,10 +64,9 @@ window.addEventListener("resize", () => {
 
 
 // skin auto refresh
-
 skinCanvas.addEventListener("canvasUpdate", () => {
   requestAnimationFrame(() => {
-    refreshSkin();
+    debouncedRefresh();
     console.log("skin updated on preview");
   });
 });
