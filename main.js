@@ -26,17 +26,18 @@ function debounce(func, delay) {
 };
 
 
-function refreshSkin() {
+async function refreshSkin() {
   const skinCanvas = document.getElementById('live_skin_canvas');
-  skinCanvas.toBlob((blob) => {
-    if (!blob) return;
+//  skinCanvas.toBlob((blob) => {
+//    if (!blob) return;
     
 //    if (skinObjectURL) {
 //      URL.revokeObjectURL(skinObjectURL)
 //    };
-    const skinObjectURL = URL.createObjectURL(blob);
-    viewer.loadSkin(skinObjectURL);
-  }, "image/png");
+    // const skinURL = URL.createObjectURL(blob);
+  const skinURL = await skinCanvas.toDataURL()
+  await viewer.loadSkin(skinURL);
+//  }, "image/png");
   console.log("refreshSkin() finished");
 };
 
