@@ -1,13 +1,8 @@
-body {
-  display: grid;
-  /*justify-content: center;*/
-}
-
 h1, h3, h4, label {
   text-align: center;
 }
 
-canvas {
+.sprite_canvas {
   width: 90%;
   height: 90%;
   margin-left: auto;
@@ -18,10 +13,12 @@ canvas {
 
 .box_container {
   width: 80%;
+  height: 50%;
   display: grid;
-  margin-left: auto;
-  margin-right: auto;
-  grid-template-columns: 1.5fr 1fr;
+  margin-left: 10%;
+  margin-right: 10%;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .sprite_box {
@@ -32,7 +29,28 @@ canvas {
 }
 
 .preview_box {
-  background-color: blue;
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+
+}
+
+.skin_container {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .input_box {

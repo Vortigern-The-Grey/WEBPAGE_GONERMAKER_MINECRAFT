@@ -1,30 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { Render } from 'https://esm.run/skin3d';
 
-  let skinViewer = new skinview3d.SkinViewer({
-		canvas: document.getElementById("skin_container"),
-		width: 300,
-		height: 400,
-		skin: "img/skin.png"
-	});
-
-	// Change viewer size
-	skinViewer.width = 600;
-	skinViewer.height = 800;
-
-	// Load another skin
-	skinViewer.loadSkin("img/skin2.png");
-
-	
-	// Set the background color
-	skinViewer.background = 0x5a76f3;
-
-	// Set the background to a normal image
-	skinViewer.loadBackground("img/background.png");
-
-	
-	
-
-	// Rotate the player
-	skinViewer.autoRotate = true;
-
+// Create a viewer
+const viewer = new Render({
+  canvas: document.getElementById('canvas-container'),
+//  width: window.innerWidth,
+//  height: window.innerHeight,
+  width: 100%,
+  height: 100%,
+  model: 'default', // 'default' or 'slim'
 });
+
+
+const skinCanvas = document.getElementById('live_skin_canvas');
+const skinDataUrl = skinCanvas.toDataURL('image/png');
+viewer.loadSkin(skinDataUrl)
+
+// Load a cape
+// await viewer.loadCape('https://mc-heads.net/cape/Notch');
+
+// Add animation
+// viewer.animation = new WalkingAnimation();
+
+// Enable auto-rotation
+// viewer.autoRotate = true;
+
+// Handle window resize
+//window.addEventListener('resize', () => {
+//  viewer.width = window.innerWidth;
+//  viewer.height = window.innerHeight;
+//});

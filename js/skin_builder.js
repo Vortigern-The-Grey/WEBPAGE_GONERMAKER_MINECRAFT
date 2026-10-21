@@ -1,7 +1,5 @@
 const canvas = document.getElementById("live_skin_canvas");
-const offscreen = new OffscreenCanvas(64, 64);
 const ctxLive = canvas.getContext("2d");
-const ctxOffscreen = offscreen.getContext("2d");
 console.log("skin_builder.js: Box canvas");
 // Array of vessel body textures
 const gonerBodyIndexSlim = [
@@ -13,24 +11,16 @@ const gonerBodyIndexSlim = [
   "./images/GONER_BODIES_SLIM/IMAGE_GONERBODY_BUTTONS.png"
 ];
 const gonerBodyIndexWide = [
-  "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_MED.png", 
+"./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_MED.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_TEE.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_THICK.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_LONG.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_VEST.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_BUTTONS.png"
 ];
-// Optional: Disable image smoothing for sharp pixel-art rendering
-ctxLive.imageSmoothingEnabled = false;toString()
-ctxOffscreen.imageSmoothingEnabled = false; 
-  // img.src = "./images/GONER_BODIES/IMAGE_GONERBODY_BUTTONS.png"; // Replace with your image source or base64
-  
-  // img.onload = () => {
-  //  // Draw and scale the image to fit the 64x64 canvas
-  //   ctx.drawImage(img, 0, 0, 64, 64);
-  // };
-  
 
+ctxLive.imageSmoothingEnabled = false;
+  
 let currentModel = 1;
 let currentHead = 1;
 let currentBody = 1;
@@ -77,7 +67,9 @@ function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
     imgBlush.src = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
     imgBlush.onload = function() {ctxLive.drawImage(imgBlush, 0, 0, 64, 64); }
   };
-
+  
+  // Send canvasUpdate to let 3d preview know canvas has been updated
+  canvas.dispatchEvent(new Event("canvasUpdate")) 
   
 };
 

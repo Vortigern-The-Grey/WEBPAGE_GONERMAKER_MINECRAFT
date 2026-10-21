@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
-  <!--<script src="js/skin_canvas.js" defer></script>-->
+  <link rel="stylesheet" href="css/styles.css?v=1.1">
   <script src="js/skin_builder.js" defer></script>
   <title>WEBPAGE_GONERMAKER_MINECRAFT</title>
 </head>
@@ -12,11 +11,12 @@
   <h1>Deltarune Vessel skin creator</h1> 
   <div class="box_container">
     <div class="sprite_box">
-      <canvas id="live_skin_canvas" width="64" height="64">
+      <canvas class="sprite_canvas" id="live_skin_canvas" width="64" height="64">
       </canvas>
     </div>
-    <div class="preview_box">
-      <h3>3dskin preview go here</h3>
+    <div class="preview_box" id="preview_box"> 
+      <canvas id="canvas-container"></canvas>
+      <script type="module" src="./main.js" defer></script>
     </div>
   </div>
   <div class="input_box">
@@ -54,6 +54,7 @@
     <p></p>
     <label for="blush">DOES IT EXPRESS LOVE?</label>
     <input type="checkbox" id="blush" value="true">
-  </div>
+    <p></p>
+  </div> 
 </body>
 </html>
