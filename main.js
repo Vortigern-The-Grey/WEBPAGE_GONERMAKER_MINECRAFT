@@ -27,17 +27,13 @@ function debounce(func, delay) {
 
 
 async function refreshSkin() {
-  const skinCanvas = document.getElementById('live_skin_canvas');
-//  skinCanvas.toBlob((blob) => {
-//    if (!blob) return;
-    
-//    if (skinObjectURL) {
-//      URL.revokeObjectURL(skinObjectURL)
-//    };
-    // const skinURL = URL.createObjectURL(blob);
-  const skinURL = await skinCanvas.toDataURL()
-  await viewer.loadSkin(skinURL);
-//  }, "image/png");
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const skinCanvas = document.getElementById('live_skin_canvas');
+      const skinURL = skinCanvas.toDataURL()
+      viewer.loadSkin(skinURL);
+    });
+  });
   console.log("refreshSkin() finished");
 };
 
