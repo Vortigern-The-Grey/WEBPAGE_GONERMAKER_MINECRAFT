@@ -30,8 +30,8 @@ async function refreshSkin() {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       const skinCanvas = document.getElementById('live_skin_canvas');
-      const skinURL = skinCanvas.toDataURL()
-      viewer.loadSkin(skinURL);
+      // const skinURL = skinCanvas.toDataURL()
+      viewer.loadSkin(skinCanvas);
     });
   });
   console.log("refreshSkin() finished");
