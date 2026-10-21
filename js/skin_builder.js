@@ -11,13 +11,36 @@ const gonerBodyIndexSlim = [
   "./images/GONER_BODIES_SLIM/IMAGE_GONERBODY_BUTTONS.png"
 ];
 const gonerBodyIndexWide = [
-"./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_MED.png", 
+  "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_MED.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_TEE.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_THICK.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_LONG.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_VEST.png", 
   "./images/GONER_BODIES_WIDE/IMAGE_GONERBODY_BUTTONS.png"
 ];
+
+const gonerHairIndex = Array.from({ length: 5 }, (value, index) => "./images/GONER_HAIR/IMAGE_GONERHAIR_" + index + ".png");
+
+
+
+// preload all sprites to prevent lag
+async function preloadImages(spriteIndex) {
+  // Load wide body images
+  try {
+    await Promise.all(
+      spriteIndex.map(url => fetch(url, { cache: "force-cache" }))
+    );
+    console.log("Preloaded images from " + spriteIndex)
+  } catch (error) {
+    console.error("Error preloading images: ", error);
+    
+  }
+};
+
+preloadImages(gonerBodyIndexSlim);
+preloadImages(gonerBodyIndexWide);
+preloadImages(gonerHairIndex);
+fetch("./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png", { cache: "force-cache" });
 
 ctxLive.imageSmoothingEnabled = false;
   
