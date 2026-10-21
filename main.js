@@ -35,13 +35,13 @@ async function refreshSkin() {
 //      URL.revokeObjectURL(skinObjectURL)
 //    };
     // const skinURL = URL.createObjectURL(blob);
-  const skinURL = await skinCanvas.toDataURL()
-  await viewer.loadSkin(skinURL);
+  const skinURL = skinCanvas.toDataURL()
+  viewer.loadSkin(skinURL);
 //  }, "image/png");
   console.log("refreshSkin() finished");
 };
 
-const debouncedRefresh = debounce(refreshSkin, 100);
+const debouncedRefresh = debounce(refreshSkin, 50);
 debouncedRefresh();
 
 // Load a cape
