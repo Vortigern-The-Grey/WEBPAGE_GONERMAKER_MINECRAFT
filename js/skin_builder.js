@@ -32,8 +32,7 @@ async function preloadImages(spriteIndex) {
     );
     console.log("Preloaded images from " + spriteIndex)
   } catch (error) {
-    console.error("Error preloading images: ", error);
-    
+    console.error("Error preloading images: ", error); 
   }
 };
 
@@ -50,7 +49,7 @@ let currentBody = 1;
 let toggleBlush = false;
 let toggleHair = false;
 
-function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
+async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
   console.log("drawGonerSprite(): Function initialised")
   console.log("drawGonerSprite(): varModel = " + varModel)
   console.log("drawGonerSprite(): intHead = " + intHead)
@@ -58,7 +57,7 @@ function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
   console.log("drawGonerSprite(): boolHair = " + boolHair)
   console.log("drawGonerSprite(): boolBlush = " + boolBlush)
   ctxLive.clearRect(0, 0, canvas.width, canvas.height);
-  ctxLive.beginPath();
+  await ctxLive.beginPath();
   console.log("drawGonerSprite(): Canvas cleared") 
   // Load and draw body image
   const imgBody = new Image();
@@ -70,29 +69,29 @@ function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
     imgBody.src = gonerBodyIndexWide[(intBody - 1)];
   };
    
-  imgBody.onload = function() {ctxLive.drawImage(imgBody, 0, 0, 64, 64); }
+  imgBody.onload = await function() {ctxLive.drawImage(imgBody, 0, 0, 64, 64); }
   
   // Load and draw head texture
   const imgHead = new Image()
   imgHead.src = "./images/GONER_HEADS/IMAGE_GONERHEAD_" + (intHead - 1) + ".png";
-  imgHead.onload = function() {ctxLive.drawImage(imgHead, 0, 0, 64, 64);}
+  imgHead.onload = await function() {ctxLive.drawImage(imgHead, 0, 0, 64, 64);}
   
   // Load and draw hair texture if option selected
   if (boolHair) {
     const imgHair = new Image();
     imgHair.src = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + (intHead - 1) + ".png";
-    imgHair.onload = function() { ctxLive.drawImage(imgHair, 0, 0, 64, 64); }
+    imgHair.onload = await function() { ctxLive.drawImage(imgHair, 0, 0, 64, 64); }
   };
 
   // Load and draw blush texture if option selected
   if (boolBlush) {
     const imgBlush = new Image();
     imgBlush.src = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
-    imgBlush.onload = function() {ctxLive.drawImage(imgBlush, 0, 0, 64, 64); }
+    imgBlush.onload = await function() {ctxLive.drawImage(imgBlush, 0, 0, 64, 64); }
   };
   
   // Send canvasUpdate to let 3d preview know canvas has been updated
-  canvas.dispatchEvent(new Event("canvasUpdate")) 
+  await canvas.dispatchEvent(new Event("canvasUpdate")) 
   
 };
 

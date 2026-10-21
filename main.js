@@ -30,7 +30,10 @@ function refreshSkin() {
   const skinCanvas = document.getElementById('live_skin_canvas');
   skinCanvas.toBlob((blob) => {
     if (!blob) return;
-
+    
+//    if (skinObjectURL) {
+//      URL.revokeObjectURL(skinObjectURL)
+//    };
     const skinObjectURL = URL.createObjectURL(blob);
     viewer.loadSkin(skinObjectURL);
   }, "image/png");
