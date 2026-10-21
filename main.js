@@ -37,7 +37,7 @@ function refreshSkin() {
   console.log("refreshSkin() finished");
 };
 
-const debouncedRefresh = debounce(refreshSkin, 50);
+const debouncedRefresh = debounce(refreshSkin, 100);
 debouncedRefresh();
 
 // Load a cape
