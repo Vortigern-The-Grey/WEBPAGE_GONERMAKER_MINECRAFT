@@ -61,6 +61,7 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
   console.log("drawGonerSprite(): Canvas cleared") 
   // Load and draw body image
   const imgBody = new Image();
+  imgBody.crossOrigin = "anonymous";
   if (varModel == 1) {
     console.log("drawGonerSprite(): Slim model selected, loading slim texture for body type " + intBody)
     imgBody.src = gonerBodyIndexSlim[(intBody - 1)];
@@ -73,12 +74,14 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
   
   // Load and draw head texture
   const imgHead = new Image()
+  imgHead.crossOrigin = "anonymous";
   imgHead.src = "./images/GONER_HEADS/IMAGE_GONERHEAD_" + (intHead - 1) + ".png";
   imgHead.onload = await function() {ctxLive.drawImage(imgHead, 0, 0, 64, 64);}
   
   // Load and draw hair texture if option selected
   if (boolHair) {
     const imgHair = new Image();
+    imgHair.crossOrigin = "anonymous";
     imgHair.src = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + (intHead - 1) + ".png";
     imgHair.onload = await function() { ctxLive.drawImage(imgHair, 0, 0, 64, 64); }
   };
@@ -86,6 +89,7 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
   // Load and draw blush texture if option selected
   if (boolBlush) {
     const imgBlush = new Image();
+    imgBlush.crossOrigin = "anonymous";   
     imgBlush.src = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
     imgBlush.onload = await function() {ctxLive.drawImage(imgBlush, 0, 0, 64, 64); }
   };
