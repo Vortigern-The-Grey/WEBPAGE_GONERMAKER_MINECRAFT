@@ -95,8 +95,12 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
   };
   
   // Send canvasUpdate to let 3d preview know canvas has been updated
-  await canvas.dispatchEvent(new Event("canvasUpdate")) 
-  console.log("canvasUpdate dispatched"); 
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      canvas.dispatchEvent(new Event("canvasUpdate")) 
+      console.log("canvasUpdate dispatched");    
+    }, 0);
+  });
 };
 
 drawGonerSprite(currentModel, currentHead, currentBody, toggleHair, toggleBlush);
