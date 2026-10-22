@@ -47,10 +47,10 @@ function loadImage(path) {
   });
 };
 
-// preloadImages(gonerBodyIndexSlim);
-// preloadImages(gonerBodyIndexWide);
-// preloadImages(gonerHairIndex);
-// fetch("./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png", { cache: "force-cache" });
+preloadImages(gonerBodyIndexSlim);
+preloadImages(gonerBodyIndexWide);
+preloadImages(gonerHairIndex);
+fetch("./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png", { cache: "force-cache" });
 
 ctxLive.imageSmoothingEnabled = false;
   
