@@ -54,6 +54,7 @@ window.addEventListener("resize", () => {
   console.log("window resized")
   viewer.width = 0;
   viewer.height = 0;
+  
 
   const width = Math.floor(container.clientWidth);
     const height = Math.floor(container.clientHeight);
