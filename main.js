@@ -37,7 +37,7 @@ async function refreshSkin() {
 };
 
 // enable debounce function
-const debouncedRefresh = debounce(refreshSkin, 100);
+const debouncedRefresh = debounce(refreshSkin, 2000);
 debouncedRefresh();
 
 // Load a cape
@@ -69,6 +69,6 @@ skinCanvas.addEventListener("canvasUpdate", () => {
     setTimeout(() => {
       debouncedRefresh();
       console.log("skin updated on preview");
-    }, 0);
+    }, 2000);
   });
 });
