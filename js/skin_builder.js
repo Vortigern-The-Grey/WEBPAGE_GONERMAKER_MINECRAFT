@@ -24,8 +24,7 @@ const gonerHairIndex = Array.from({ length: 5 }, (value, index) => "./images/GON
 
 
 // preload all sprites to prevent lag
-async function preloadImages(spriteIndex) {
-  // Load wide body images
+async function preloadImages(spriteIndex) { 
   try {
     await Promise.all(
       spriteIndex.map(url => fetch(url, { cache: "force-cache" }))
