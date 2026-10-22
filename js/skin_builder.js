@@ -36,6 +36,17 @@ async function preloadImages(spriteIndex) {
   }
 };
 
+function loadImage(path) {
+  return new Promise((resolve, reject) => {
+    const imgTemp = new Image();
+    imgTemp.crossOrigin = "anonymous";
+    imgTemp.onload = () => resolve(imgTemp);
+    imgTemp.onerror = (err) => reject(err);
+
+    imgTemp.src = path;
+  });
+};
+
 // preloadImages(gonerBodyIndexSlim);
 // preloadImages(gonerBodyIndexWide);
 // preloadImages(gonerHairIndex);
@@ -51,47 +62,41 @@ let toggleHair = false;
 
 async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) {
   console.log("drawGonerSprite(): Function initialised")
-  // console.log("drawGonerSprite(): varModel = " + varModel)
-  // console.log("drawGonerSprite(): intHead = " + intHead)
-  // console.log("drawGonerSprite(): intBody = " + intBody)
-  // console.log("drawGonerSprite(): boolHair = " + boolHair)
-  // console.log("drawGonerSprite(): boolBlush = " + boolBlush)
   ctxLive.clearRect(0, 0, canvas.width, canvas.height);
   await ctxLive.beginPath();
   console.log("drawGonerSprite(): Canvas cleared") 
   // Load and draw body image
-  const imgBody = new Image();
-  imgBody.crossOrigin = "anonymous";
+  let pathBody = null;
   if (varModel == 1) {
     console.log("drawGonerSprite(): Slim model selected, loading slim texture for body type " + intBody)
-    imgBody.src = gonerBodyIndexSlim[(intBody - 1)];
+    pathBody = gonerBodyIndexSlim[(intBody - 1)];
   } else if (varModel == 2) {
     console.log("drawGonerSprite(): Wide model selected, loading wide texture for body type " + intBody)
-    imgBody.src = gonerBodyIndexWide[(intBody - 1)];
+    pathBody = gonerBodyIndexWide[(intBody - 1)];
   };
-   
-  imgBody.onload = await function() {ctxLive.drawImage(imgBody, 0, 0, 64, 64); }
+  const imgBody = await loadImage(pathBody);
+  await ctxLive.drawImage(imgBody, 0, 0, 64, 64);
   
   // Load and draw head texture
-  const imgHead = new Image()
-  imgHead.crossOrigin = "anonymous";
-  imgHead.src = "./images/GONER_HEADS/IMAGE_GONERHEAD_" + (intHead - 1) + ".png";
-  imgHead.onload = await function() {ctxLive.drawImage(imgHead, 0, 0, 64, 64);}
+  let pathHead = null;
+  pathHead = ("./images/GONER_HEADS/IMAGE_GONERHEAD_" + (intHead - 1) + ".png");
+  const imgHead = await loadImage(pathHead);
+  await ctxLive.drawImage(imgHead, 0, 0, 64, 64);
   
   // Load and draw hair texture if option selected
   if (boolHair) {
-    const imgHair = new Image();
-    imgHair.crossOrigin = "anonymous";
-    imgHair.src = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + (intHead - 1) + ".png";
-    imgHair.onload = await function() { ctxLive.drawImage(imgHair, 0, 0, 64, 64); }
+    let pathHair = null;
+    pathHair = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + (intHead - 1) + ".png";
+    const imgHair = await loadImage(pathHair);
+    await ctxLive.drawImage(imgHair, 0, 0, 64, 64);
   };
 
   // Load and draw blush texture if option selected
   if (boolBlush) {
-    const imgBlush = new Image();
-    imgBlush.crossOrigin = "anonymous";   
-    imgBlush.src = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
-    imgBlush.onload = await function() {ctxLive.drawImage(imgBlush, 0, 0, 64, 64); }
+    let pathBlush = null;  
+    pathBlush = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
+    const imgBlush = await loadImage(pathBlush);
+    await ctxLive.drawImage(imgBlush, 0, 0, 64, 64);
   };
   
   // Send canvasUpdate to let 3d preview know canvas has been updated

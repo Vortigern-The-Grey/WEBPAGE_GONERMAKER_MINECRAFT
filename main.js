@@ -37,7 +37,7 @@ async function refreshSkin() {
 };
 
 // enable debounce function
-const debouncedRefresh = debounce(refreshSkin, 0);
+const debouncedRefresh = debounce(refreshSkin, 100);
 debouncedRefresh();
 
 // Load a cape
