@@ -1,7 +1,11 @@
 import { Render } from 'https://esm.run/skin3d';
 
+// First load of skinCanvas
+const skinCanvas = document.getElementById('live_skin_canvas');
+
 // Load parent div
 const container = document.getElementById("preview_box")
+
 // Create a viewer
 const viewer = new Render({
   canvas: document.getElementById('canvas-container'),
@@ -9,10 +13,6 @@ const viewer = new Render({
   height: container.clientHeight,
   model: 'default', 
 });
-
-// First load of skinCanvas
-const skinCanvas = document.getElementById('live_skin_canvas');
-
 
 // debounce function for refreshSkin
 function debounce(func, delay) {
@@ -25,18 +25,18 @@ function debounce(func, delay) {
   };
 };
 
-
 async function refreshSkin() {
-  requestAnimationFrame(() => {
+  await requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       const skinCanvas = document.getElementById('live_skin_canvas');
       // const skinURL = skinCanvas.toDataURL()
       viewer.loadSkin(skinCanvas);
     });
   });
-  console.log("refreshSkin() finished");
+  console.log("refreshSkin(): Finished");
 };
 
+// enable debounce function
 const debouncedRefresh = debounce(refreshSkin, 100);
 debouncedRefresh();
 
@@ -49,6 +49,7 @@ debouncedRefresh();
 // Enable auto-rotation
 viewer.autoRotate = true;
 
+// Canvas resizer
 window.addEventListener("resize", () => {
   console.log("window resized")
   viewer.width = 0;
@@ -61,7 +62,6 @@ window.addEventListener("resize", () => {
       viewer.height = height;
     }
 });
-
 
 // skin auto refresh
 skinCanvas.addEventListener("canvasUpdate", () => {
