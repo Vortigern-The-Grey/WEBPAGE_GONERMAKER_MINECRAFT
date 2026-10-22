@@ -1,10 +1,72 @@
-body {
-  font-family: "8bitoperator JVE Regular", 'Courier New', Courier, monospace;
-  background-color: black;
-  color: white;
+/* hi i like comments */
+html {
+    background-color: #000000; /* fallback i guess */
+    background-image:
+        linear-gradient(#0000009a, #0000009a),
+        url('/images/assets/THEDEPTHS.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
 }
 
-h1, h3, h4, label {
+body {
+    font-family: "8bitoperator JVE Regular", monospace;
+    color: white;
+}
+
+
+.outlined { /* not very accurate but itll do lmao */
+    color: white;
+    -webkit-text-stroke: 5px transparent;
+    animation: outline-pulse 5s ease-in-out infinite;
+}
+@keyframes outline-pulse {
+  0%, 100% {
+    -webkit-text-stroke-color: transparent;
+  }
+  50% {
+    -webkit-text-stroke-color: #ffffff5a;
+  }
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+}
+
+a {
+  color: #ff0000;
+}
+a:hover {
+  color: #ffff00;
+}
+
+
+.bigcontain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.leftcontain, .rightcontain {
+  width: 40%;
+  border: 5px solid #fff;
+  background-color: #000000;
+  margin: 1.5vw;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .leftcontain, .rightcontain {
+    width: 85%;
+  }
+}
+
+h1, h2, h3, h4, label {
   text-align: center;
 }
 
@@ -16,6 +78,14 @@ h1, h3, h4, label {
   size-adjust: 150%;
 }
 
+.box_container {
+  width: 30%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
 .sprite_canvas {
   width: 90%;
   height: 90%;
@@ -23,36 +93,42 @@ h1, h3, h4, label {
   margin-right: auto;
   image-rendering: pixelated;
 }
-
-.box_container {
-  width: 60%;
-  height: 50%;
-  display: grid;
-  margin-left: 20%;
-  margin-right: 20%;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr);
-}
-
 .sprite_box {
-  background-image: url(IMAGE_DEPTHS.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background: #000;
+    background-image:
+        linear-gradient(#0000009a, #0000009a),
+        url('/images/assets/gridbox.png');
+    background-repeat: repeat;
+    background-position: 0 0;
+
+    animation: grid-movething 5s linear infinite;
+
   image-rendering: pixelated;
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
 }
+@keyframes grid-movething {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 64px 64px;
+    }
+}
 
 .preview_box {
   position: relative;
-  width: 100%;
-  height: auto;
+  width: 80%;
+  height: 300px;
   overflow: hidden;
   min-width: 0;
   min-height: 0;
 
+  margin: 2vw auto;
+  background-image: url('/images/assets/delta-rune-maker.gif');
+  background-size: contain;
+  background-position: center;
 }
 
 .skin_container {
@@ -68,6 +144,7 @@ h1, h3, h4, label {
   width: 100% !important;
   height: 100% !important;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
 }
 
 .input_box {

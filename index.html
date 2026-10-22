@@ -1,60 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css?v=1.1">
-  <script src="js/skin_builder.js" defer></script>
-  <title>WEBPAGE_GONERMAKER_MINECRAFT</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MC_GONERMAKER</title>
+    <link href="/images/assets/mcgonermaker.ico" rel="icon" type="image/x-icon">
+    <meta name="description" content="CREATE YOUR OWN VESSEL.">
+    <!-- <meta name="author" content="scientists reveal that Hi"> -->
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/skin_builder.js" defer></script>
+    <script src="/audio/clickaclicka.js" defer></script>
+
 </head>
-<body>
-  <h1>Deltarune Vessel skin creator</h1> 
-  <div class="box_container">
-    <div class="sprite_box">
-      <canvas class="sprite_canvas" id="live_skin_canvas" width="64" height="64">
-      </canvas>
-    </div>
-    <div class="preview_box" id="preview_box"> 
-      <canvas id="canvas-container"></canvas>
-      <script type="module" src="./main.js" defer></script>
-    </div>
+
+<body onclick=sndSelect()>
+
+  <header>
+    <div class="outlined" style="font-size: xx-large;">GONERMAKER (VESSEL SKIN CREATOR)</div>
+    <span style="font-size: small;"><a href="https://github.com/Vortigern-The-Grey/WEBPAGE_GONERMAKER_MINECRAFT">source code</a> <!--  --- mute audio --- made by <a href="https://www.reddit.com/r/VesSOUL/comments/1xalvv6/comment/19rg5jz0d4d5t/">vortigern-the-gray</a> & <a href="https://www.reddit.com/user/kommittt/">kommittt</a> --> </span> 
+
+    <audio loop autoplay id="ANOTHER_HIM">
+        <source src="/audio/AUDIO_ANOTHERHIM.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+  </header>
+
+    <div class="bigcontain">
+
+      <div class="leftcontain">
+        <!-- skin preview goes here, and at the bottom is gonna be a box for the skin file download/save as-->
+        <h2 class="outlined">YOUR CREATION.</h2>
+
+            <div class="preview_box" id="preview_box"> 
+              <canvas id="canvas-container"></canvas>
+              <script type="module" src="./main.js" defer></script>
+            </div>
+
+          <div class="box_container">
+            <div class="sprite_box">
+              <canvas class="sprite_canvas" id="live_skin_canvas" width="64" height="64"> </canvas>
+            </div>
+          </div>
+
+          <h3>
+            <a href="." title="RESET THE PROGRAM.">DISCARD</a>
+          </h3>
+
+      </div>
+
+
+      <div class="rightcontain">
+        <!-- options :3 -->
+
+        <h2 class="outlined">TAILOR IT TO YOUR LIKING.</h2>
+
+           <div class="input_box">
+              <label for="model">SELECT THE PREFERRED MODEL</label>
+              <select id="model">
+                <option value="1">SLIM</option>
+                <option value="2">WIDE</option> 
+              </select>
+              <p></p>
+              <label for="head">SELECT THE HEAD THAT YOU PREFER</label>
+              <select id="head">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+              <p></p>
+              <label for="body">SELECT THE BODY THAT YOU PREFER</label>
+              <select id="body">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>    
+              <p></p>
+              <label for="hair">DOES IT'S HAIR EXTEND OUTWARD?</label>
+              <input type="checkbox" id="hair" value="true">
+              <p></p>
+              <label for="blush">DOES IT EXPRESS LOVE?</label>
+              <input type="checkbox" id="blush" value="true">
+              <p></p>
+            </div> 
+      </div>
+
   </div>
-  <div class="input_box">
-    <h3>options go here</h3>
-    <label for="model">SELECT THE PREFERRED MODEL</label>
-    <select id="model">
-      <option value="1">SLIM</option>
-      <option value="2">WIDE</option> 
-    </select>
-    <p></p>
-    <label for="head">SELECT THE HEAD THAT YOU PREFER</label>
-    <select id="head">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-    </select>
-    <p></p>
-    <label for="body">SELECT THE BODY THAT YOU PREFER</label>
-    <select id="body">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>    
-    <p></p>
-    <label for="hair">DOES IT'S HAIR EXTEND OUTWARD?</label>
-    <input type="checkbox" id="hair" value="true">
-    <p></p>
-    <label for="blush">DOES IT EXPRESS LOVE?</label>
-    <input type="checkbox" id="blush" value="true">
-    <p></p>
-  </div> 
+
+
+
+
+
 </body>
 </html>
