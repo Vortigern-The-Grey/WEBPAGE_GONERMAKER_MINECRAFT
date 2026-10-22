@@ -57,8 +57,8 @@ window.addEventListener("resize", () => {
   const width = Math.floor(container.clientWidth);
     const height = Math.floor(container.clientHeight);
     if (viewer.width !== width || viewer.height !== height) {
-        viewer.width = width;
-        viewer.height = height;
+      viewer.width = width;
+      viewer.height = height;
     }
 });
 
@@ -66,7 +66,9 @@ window.addEventListener("resize", () => {
 // skin auto refresh
 skinCanvas.addEventListener("canvasUpdate", () => {
   requestAnimationFrame(() => {
-    debouncedRefresh();
-    console.log("skin updated on preview");
+    setTimeout(() => {
+      debouncedRefresh();
+      console.log("skin updated on preview");
+    }, 0);
   });
 });
