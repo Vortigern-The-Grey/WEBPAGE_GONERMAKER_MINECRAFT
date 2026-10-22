@@ -75,20 +75,20 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
     pathBody = gonerBodyIndexWide[(intBody - 1)];
   };
   const imgBody = await loadImage(pathBody);
-  await ctxLive.drawImage(imgBody, 0, 0, 64, 64);
+  ctxLive.drawImage(imgBody, 0, 0, 64, 64);
   
   // Load and draw head texture
   let pathHead = null;
   pathHead = ("./images/GONER_HEADS/IMAGE_GONERHEAD_" + (intHead - 1) + ".png");
   const imgHead = await loadImage(pathHead);
-  await ctxLive.drawImage(imgHead, 0, 0, 64, 64);
+  ctxLive.drawImage(imgHead, 0, 0, 64, 64);
   
   // Load and draw hair texture if option selected
   if (boolHair) {
     let pathHair = null;
     pathHair = "./images/GONER_HAIR/IMAGE_GONERHAIR_" + (intHead - 1) + ".png";
     const imgHair = await loadImage(pathHair);
-    await ctxLive.drawImage(imgHair, 0, 0, 64, 64);
+    ctxLive.drawImage(imgHair, 0, 0, 64, 64);
   };
 
   // Load and draw blush texture if option selected
@@ -96,7 +96,7 @@ async function drawGonerSprite(varModel, intHead, intBody, boolHair, boolBlush) 
     let pathBlush = null;  
     pathBlush = "./images/GONER_GIFTS/IMAGE_GONERGIFT_KINDNESS.png";
     const imgBlush = await loadImage(pathBlush);
-    await ctxLive.drawImage(imgBlush, 0, 0, 64, 64);
+    ctxLive.drawImage(imgBlush, 0, 0, 64, 64);
   };
   
   // Send canvasUpdate to let 3d preview know canvas has been updated
